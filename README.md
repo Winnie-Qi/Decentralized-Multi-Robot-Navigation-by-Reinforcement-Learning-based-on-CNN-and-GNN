@@ -3,4 +3,6 @@ The scenario assumes local observation and distributed network, that is, each ag
 Based on the above assumptions, the input structure of the network is shown below.\
 <img src="https://github.com/Winnie-Qi/Decentralized-Multi-Robot-Navigation-by-Reinforcement-Learning-based-on-CNN-and-GNN/blob/main/pictures%20in%20readme/pic1.jpg" alt="drawing" width="36%"/>\
 For the agent S1, its observation is limited with the red box. Then, the first layer of the input is the position of the obstacles in the red box. The second layer of the input is the position of goal(G1), or  its projection onto the boundary in this case. The third layer is the position of other agents in the field of view relative to S1.\
-<img src="https://github.com/Winnie-Qi/Decentralized-Multi-Robot-Navigation-by-Reinforcement-Learning-based-on-CNN-and-GNN/blob/main/pictures%20in%20readme/pic2.jpg" alt="drawing" width="45%"/>
+<img src="https://github.com/Winnie-Qi/Decentralized-Multi-Robot-Navigation-by-Reinforcement-Learning-based-on-CNN-and-GNN/blob/main/pictures%20in%20readme/pic2.jpg" alt="drawing" width="47%"/>\
+The three-layer input is then fed into a CNN to extract higher level features followed by a GNN to communicate the features with nearby agents, and at last a MLP to predict the actions.\
+<img src="https://github.com/Winnie-Qi/Decentralized-Multi-Robot-Navigation-by-Reinforcement-Learning-based-on-CNN-and-GNN/blob/main/pictures%20in%20readme/pic3.jpg" alt="drawing" width="50%"/>
