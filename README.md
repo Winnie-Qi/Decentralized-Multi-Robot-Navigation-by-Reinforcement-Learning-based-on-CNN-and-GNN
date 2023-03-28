@@ -1,8 +1,11 @@
-The baseline of this project is based on this [repository](https://github.com/proroklab/gnn_pathplanning).\
+The framework of the code inherits from this [repository](https://github.com/proroklab/gnn_pathplanning), which also serves as the baseline for the comparison with our results.\
 The scenario assumes local observation and distributed network, that is, each agent can only observe the world within a certain radius and can only communicate with other agents within this radius, and each agent makes motion decisions independently.\
 Based on the above assumptions, the input structure of the network is shown below.\
 <img src="https://github.com/Winnie-Qi/Decentralized-Multi-Robot-Navigation-by-Reinforcement-Learning-based-on-CNN-and-GNN/blob/main/pictures%20in%20readme/pic1.jpg" alt="drawing" width="36%"/>\
 For the agent S1, its observation is limited with the red box. Then, the first layer of the input is the position of the obstacles in the red box. The second layer of the input is the position of goal(G1), or  its projection onto the boundary in this case. The third layer is the position of other agents in the field of view relative to S1.\
 <img src="https://github.com/Winnie-Qi/Decentralized-Multi-Robot-Navigation-by-Reinforcement-Learning-based-on-CNN-and-GNN/blob/main/pictures%20in%20readme/pic2.jpg" alt="drawing" width="47%"/>\
 The three-layer input is then fed into a CNN to extract higher level features followed by a GNN to communicate the features with nearby agents, and at last a MLP to predict the actions.\
-<img src="https://github.com/Winnie-Qi/Decentralized-Multi-Robot-Navigation-by-Reinforcement-Learning-based-on-CNN-and-GNN/blob/main/pictures%20in%20readme/pic3.jpg" alt="drawing" width="50%"/>
+<img src="https://github.com/Winnie-Qi/Decentralized-Multi-Robot-Navigation-by-Reinforcement-Learning-based-on-CNN-and-GNN/blob/main/pictures%20in%20readme/pic3.jpg" alt="drawing" width="60%"/>
+In baseline，because only imitation learning is used，the effect of the network can only be as close as possible to the expert algorithm but will never outperform it. That is to say, the upper bound of the effect of the network is limited by the expert algorithm. Therefore, we adopt deep q learning to replace simple imitation learning, the similarity in imitation becomes reward of the environment, and random action selection is introduced to encourage agent's exploration behavior.
+<img src="https://github.com/Winnie-Qi/Decentralized-Multi-Robot-Navigation-by-Reinforcement-Learning-based-on-CNN-and-GNN/blob/main/pictures%20in%20readme/pic4.jpg" alt="drawing" width="80%"/>
+risk-sensitive Q-learning algorithm
