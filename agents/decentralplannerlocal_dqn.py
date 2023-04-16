@@ -338,12 +338,8 @@ class DecentralPlannerAgentLocalWithOnlineExpert(BaseAgent):
         """
 
         # Set the model to be in training mode
-
         self.model.train()
-        # count = 0
-        # for param in self.model.parameters():
-        #     print(param.requires_grad)
-        # for batch_idx, (input, target, GSO) in enumerate(self.data_loader.train_loader):
+
         for batch_idx, (batch_input, batch_target, _, batch_GSO, map) in enumerate(self.data_loader.train_loader):
 
             inputGPU = batch_input[0].to(self.config.device) # (64,10,3,11,11)
@@ -386,8 +382,9 @@ class DecentralPlannerAgentLocalWithOnlineExpert(BaseAgent):
                 #     predict[id_agent][:][:] = batch_predict_currentAgent
                 # actions[id_agent,:] = action
                 next_state = self.robot.getNextState(posStart,action) # (64,2)
+                next_state = torch.clamp(next_state,min=0,max=19)
                 next_states[:,id_agent,:] = next_state # (64,10,2)
-                torch.clamp(next_states,min=0,max=19)
+
                 # next_st
                 q_values[:,id_agent] = batch_predict_currentAgent.gather(1, action.view(-1,1)).squeeze() # (64,10)ates =
                 #reward = (64)
