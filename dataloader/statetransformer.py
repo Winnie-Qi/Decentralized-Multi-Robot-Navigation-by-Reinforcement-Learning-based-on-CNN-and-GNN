@@ -62,9 +62,6 @@ class AgentState:
             goalX_FOV = int(self.dist * (x_sign + 1))
             goalY_FOV = int(self.centerX + np.round(self.dist * dy / np.abs(dx)))
 
-        print(channel_goal)
-        print(goalX_FOV)
-        print(goalY_FOV)
         channel_goal[goalX_FOV][goalY_FOV] = 1
         return channel_goal
 
